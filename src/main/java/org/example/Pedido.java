@@ -59,4 +59,17 @@ public class Pedido {
         resumo.append("Total: ").append(calcularValorTotal());
         return resumo.toString();
     }
+
+
+
+    public void adicionarItem(Produto produto, Integer quantidade) {
+        if (produto == null || quantidade <= 0) {
+            throw new IllegalArgumentException("Produto e quantidade devem ser válidos.");
+        }
+        if (produto.getEstoque() < quantidade) {
+            throw new IllegalArgumentException("Estoque insuficiente para o produto: " + produto.getNome());
+        }
+        ItemPedido item = new ItemPedido(produto, quantidade);
+        this.itens.add(item);
+
 }
